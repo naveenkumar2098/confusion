@@ -15,7 +15,6 @@ function RenderDish({dish}){
                 </CardBody>
             </Card>
         </div>
-        
     );
 }
 
