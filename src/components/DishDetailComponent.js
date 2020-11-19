@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Control, Errors, LocalForm } from 'react-redux-form';
 import { Link } from 'react-router-dom';
 import { Card, CardImg, CardBody, CardText, CardTitle, Breadcrumb, BreadcrumbItem, Label, Modal, Button, ModalBody, ModalHeader, Row, Col } from 'reactstrap';
-
+import { Loading } from './LoadingComponent';
 
 function RenderDish({dish}){
     return(
@@ -42,7 +42,24 @@ function RenderComments({comments, dishId, addComment}){
 }
     
 const DishDetail = (props) => {
-    if(props.dish != null){
+    if(props.isLoading){
+        return(
+            <div className="container">
+                <div className="row">
+                    <Loading />
+                </div>
+            </div>
+        );
+    }else if(props.errMessage) {
+        return(
+            <div className="container">
+                <div className="row">
+                    <h4>{props.errMessage}</h4>
+                </div>
+            </div>
+        )
+    }
+    else if(props.dish != null){
         return (
             <div className="container">
                 <div className="row">
